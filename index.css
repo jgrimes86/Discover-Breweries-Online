@@ -3,6 +3,48 @@
     flex-wrap: wrap;
 }
 
+/* Dropdown Button */
+.dropbtn {
+    background-color: darkgray;
+    color: whitesmoke;
+    padding: 10px;
+    font-size: 24px;
+    border: none;
+    cursor: grab;
+}
+
+.dropbtn:hover, .dropbtn.focus{ 
+    background-color: lightgray;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: grey;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 10px 14px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: lightgray;
+}
+
+.show {
+    display: block;
+}
+
 .flex-item {
 
 }
