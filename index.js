@@ -6,32 +6,48 @@ const galleryDiv = document.getElementById('brewery-preview');
 const breweryDetail = document.getElementById('brewery-detail');
 const stateSelector = document.getElementsByClassName('dropdown')
 
-// Function to fetch the brewery data from api
-function fetchResource(url) {
+//all-purpose fetch function
+function fetcher(url) {
     return fetch(url)
-    .then((r) => r.json())
-    .then(breweryData => {
-        breweryData.forEach(renderBreweryGallery)
-        
-    })
+    .then(response => response.json())
 }
-fetchResource(breweryAPI)
 
+//get state brewery data from databaseand
+function stateBreweries(state) {
+    fetcher(`https://api.openbrewerydb.org/v1/breweries?by_state=${state}&per_page=200`)
+    .then(randomizer)
+}
+stateBreweries('New_Jersey')
 
-function renderBreweryGallery(brewery) {
-    const div = document.createElement('div');
-    div.dataset.brewId = brewery.id;
-    div.addEventListener('click', breweryDetails);
+// create an array of 10 breweries randomly select a brewery from database response
+function randomizer(stateBreweries) {
+    let numberOfBreweries = stateBreweries.length;
+    let breweryArray = [];
+    for (let i=10; i>0; i--) {
+        breweryArray.push(stateBreweries[Math.floor(Math.random() * numberOfBreweries)])
+    }
+    console.log(breweryArray)
+    renderBreweryGallery(breweryArray)
+}
 
-    const website = brewery.website_url;
-    const img = document.createElement('img');
-    img.src = logoSelector(website);
-    
-    const span = document.createElement('span');
-    span.innerText = brewery.name;
-    span.classList = "brewery-name";
-    div.append(img, span);
-    galleryDiv.append(div);
+//populate brewery menu from the array made by randomizer
+function renderBreweryGallery(breweryArray) {
+    galleryDiv.innerHTML = '';
+    breweryArray.map(brewery => {
+        const div = document.createElement('div');
+        div.dataset.brewId = brewery.id;
+        div.addEventListener('click', breweryDetails);
+
+        const website = brewery.website_url;
+        const img = document.createElement('img');
+        img.src = logoSelector(website);
+        
+        const span = document.createElement('span');
+        span.innerText = brewery.name;
+        span.classList = "brewery-name";
+        div.append(img, span);
+        galleryDiv.append(div);
+    })
 }
 
 
