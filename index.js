@@ -2,43 +2,60 @@
 // const breweryAPI = `https://api.openbrewerydb.org/v1/breweries?page=${randomPageNum}&per_page=10`
 
 const breweryAPI = 'https://api.openbrewerydb.org/v1/breweries/random?size=10'
-const galleryDiv = document.getElementById('brewery-preview')
+const galleryDiv = document.getElementById('brewery-preview');
 const breweryDetail = document.getElementById('brewery-detail');
 const stateSelector = document.getElementsByClassName('dropdown')
 
-// Function to fetch the brewery data from api
-function fetchResource(url) {
+//all-purpose fetch function
+function fetcher(url) {
     return fetch(url)
-    .then((r) => r.json())
-    .then(breweryData => {
-        breweryData.forEach(renderBreweryGallery)
+    .then(response => response.json())
+}
+
+//get state brewery data from databaseand
+function stateBreweries(state) {
+    fetcher(`https://api.openbrewerydb.org/v1/breweries?by_state=${state}&per_page=200`)
+    .then(randomizer)
+}
+stateBreweries('New_Jersey')
+
+// create an array of 10 breweries randomly select a brewery from database response
+function randomizer(stateBreweries) {
+    let numberOfBreweries = stateBreweries.length;
+    let breweryArray = [];
+    for (let i=10; i>0; i--) {
+        breweryArray.push(stateBreweries[Math.floor(Math.random() * numberOfBreweries)])
+    }
+    console.log(breweryArray)
+    renderBreweryGallery(breweryArray)
+}
+
+//populate brewery menu from the array made by randomizer
+function renderBreweryGallery(breweryArray) {
+    galleryDiv.innerHTML = '';
+    breweryArray.map(brewery => {
+        const div = document.createElement('div');
+        div.dataset.brewId = brewery.id;
+        div.addEventListener('click', breweryDetails);
+
+        const website = brewery.website_url;
+        const img = document.createElement('img');
+        img.src = 'images/icons8-hops-80.png';
         
+        const span = document.createElement('span');
+        span.innerText = brewery.name;
+        span.classList = "brewery-name";
+        div.append(img, span);
+        galleryDiv.append(div);
     })
 }
-fetchResource(breweryAPI)
 
 
-function renderBreweryGallery(brewery) {
-    const div = document.createElement('div');
-    div.dataset.brewId = brewery.id;
-    div.addEventListener('click', breweryDetails);
-
-    const website = brewery.website_url;
-    const img = document.createElement('img');
-    img.src = logoSelector(website);
-    
-    const span = document.createElement('span');
-    span.innerText = brewery.name;
-    div.append(img, span);
-    galleryDiv.append(div);
-}
-
-
-function logoSelector(website) {
-    let urlSection = website.replace(`http://www.`, '')
-    let icon = `https://icons.duckduckgo.com/ip3/${urlSection}.ico`
-    return icon
-}
+// function logoSelector(website) {
+//     let urlSection = website.replace(`http://www.`, '')
+//     let icon = `https://icons.duckduckgo.com/ip3/${urlSection}.ico`
+//     return icon
+// }
 
 
 
@@ -72,3 +89,23 @@ function breweryDetails(event) {
     })
 
 }
+
+function saveToDatabase() {
+    console.log('this will save the brewery to the list')
+}
+
+// Function to search breweries by state form submission and render gallery with results
+stateSelectionForm.addEventListener('submit', e => {
+    e.preventDefault()
+    // const state = e.target.state.value
+    const state = e.target['state'].value
+    console.log(state)
+    breweryDetail.innerHTML = ''
+    
+    fetch(breweryAPIRoot + `?by_state=${state}&size=10`)
+        .then(resp => resp.json())
+        .then(stateBreweryData => {
+            stateBreweryData.forEach(renderBreweryGallery)
+        })
+
+    e.target.reset()
