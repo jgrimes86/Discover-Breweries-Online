@@ -62,8 +62,7 @@ function renderBreweryGallery(breweryArray) {
 
 function breweryDetails(event) {
     let brewId = event.target.parentElement.dataset.brewId
-    fetch('https://api.openbrewerydb.org/v1/breweries/'+brewId)
-    .then(resp => resp.json())
+    fetcher('https://api.openbrewerydb.org/v1/breweries/'+brewId)
     .then(brewery => {
         breweryDetail.innerHTML = '';
         
