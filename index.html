@@ -10,27 +10,26 @@
     <div class="header" id="jumbo-tron">
       <h1 id="main-header">Discover Breweries Online</h1>
     </div>
-       <div class="dropdown">
-        <button class="dropbtn">Select A State &#8675</button>
-        <div id="state-dropdown" class="dropdown-content">
-            <a href="#">New York</a>
-            <a href="#">New Jersey</a>
-            <a href="#">Conneticut</a>
-            <a href="#">Massachusetts</a>
-            <a href="#">Rhode Island</a>
+       <form action="" method="get" class="state-selector">
+        <div class="state-selector">
+            <label for="state"></label>
+            <input type="text" name="state" id="state" value="enter a state" required />
         </div>
-       </div>
+        <div class="state-selector">
+            <input type="submit" value="Search" />
+        </div>
+       </form>
  
     <div id="brewery-preview" class="flex-container">
 
     </div>
-    <div>
-        <span id="liked-brewery">
+    <div class="flex-container">
+        <span id="liked-brewery" class="detail-box">
             <h3>Your Saved Breweries:</h3>
             
         </span>
-        <span>
-            <h3>Click on a brewery to view detials.</h3>
+        <span class="detail-box">
+            <h3 id="click-instruction">Click on a brewery to view detials.</h3>
             <div id="brewery-image"></div>
             <div id="brewery-detail"></div>
         </span>

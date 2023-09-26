@@ -2,8 +2,9 @@
 // const breweryAPI = `https://api.openbrewerydb.org/v1/breweries?page=${randomPageNum}&per_page=10`
 
 const breweryAPI = 'https://api.openbrewerydb.org/v1/breweries/random?size=10'
-const galleryDiv = document.getElementById('brewery-preview')
+const galleryDiv = document.getElementById('brewery-preview');
 const breweryDetail = document.getElementById('brewery-detail');
+const stateSelector = document.getElementsByClassName('dropdown')
 
 // Function to fetch the brewery data from api
 function fetchResource(url) {
@@ -28,6 +29,7 @@ function renderBreweryGallery(brewery) {
     
     const span = document.createElement('span');
     span.innerText = brewery.name;
+    span.classList = "brewery-name";
     div.append(img, span);
     galleryDiv.append(div);
 }
@@ -70,8 +72,4 @@ function breweryDetails(event) {
 
     })
 
-}
-
-function saveToDatabase() {
-    console.log('This button will save the brewery to the local database.')
 }
