@@ -1,9 +1,26 @@
+/* Main Site Header */
+#main-header {
+    display: block;
+    height: 250px;
+    width: auto;
+    background-color: black;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#main-header {
+    text-align: center;
+    padding-top: 125px;
+    color: antiquewhite;
+    font-size: 4rem;
+}
+
 .flex-container {
     display: flex;
     flex-wrap: wrap;
 }
 
-/* Dropdown Button */
+/* Dropdown Menu */
 .dropbtn {
     background-color: darkgray;
     color: whitesmoke;
@@ -11,6 +28,7 @@
     font-size: 24px;
     border: none;
     cursor: grab;
+    margin-bottom: 15px;
 }
 
 .dropbtn:hover, .dropbtn.focus{ 
@@ -41,9 +59,17 @@
     background-color: lightgray;
 }
 
-.show {
+.dropdown:hover .dropdown-content {
     display: block;
 }
+
+.dropdown:hover .dropbtn {
+    background-color: lightgray;
+}
+
+/* .show {
+    display: block;
+} */
 
 .flex-item {
 
