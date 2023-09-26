@@ -77,6 +77,7 @@ stateSelectionForm.addEventListener('submit', e => {
     // const state = e.target.state.value
     const state = e.target['state'].value
     console.log(state)
+    breweryDetail.innerHTML = ''
     
     fetch(breweryAPIRoot + `?by_state=${state}&size=10`)
         .then(resp => resp.json())
