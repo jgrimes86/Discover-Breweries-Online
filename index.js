@@ -40,7 +40,7 @@ function renderBreweryGallery(breweryArray) {
 
         const website = brewery.website_url;
         const img = document.createElement('img');
-        img.src = logoSelector(website);
+        img.src = 'images/icons8-hops-80.png';
         
         const span = document.createElement('span');
         span.innerText = brewery.name;
@@ -51,11 +51,11 @@ function renderBreweryGallery(breweryArray) {
 }
 
 
-function logoSelector(website) {
-    let urlSection = website.replace(`http://www.`, '')
-    let icon = `https://icons.duckduckgo.com/ip3/${urlSection}.ico`
-    return icon
-}
+// function logoSelector(website) {
+//     let urlSection = website.replace(`http://www.`, '')
+//     let icon = `https://icons.duckduckgo.com/ip3/${urlSection}.ico`
+//     return icon
+// }
 
 
 
@@ -88,4 +88,8 @@ function breweryDetails(event) {
 
     })
 
+}
+
+function saveToDatabase() {
+    console.log('this will save the brewery to the list')
 }
