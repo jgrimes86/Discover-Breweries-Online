@@ -93,3 +93,19 @@ function breweryDetails(event) {
 function saveToDatabase() {
     console.log('this will save the brewery to the list')
 }
+
+// Function to search breweries by state form submission and render gallery with results
+stateSelectionForm.addEventListener('submit', e => {
+    e.preventDefault()
+    // const state = e.target.state.value
+    const state = e.target['state'].value
+    console.log(state)
+    breweryDetail.innerHTML = ''
+    
+    fetch(breweryAPIRoot + `?by_state=${state}&size=10`)
+        .then(resp => resp.json())
+        .then(stateBreweryData => {
+            stateBreweryData.forEach(renderBreweryGallery)
+        })
+
+    e.target.reset()
