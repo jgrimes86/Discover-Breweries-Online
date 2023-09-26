@@ -17,7 +17,7 @@
 
 .flex-container {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
 }
 
 /* Dropdown Menu */
@@ -67,11 +67,29 @@
     background-color: lightgray;
 }
 
-/* .show {
-    display: block;
-} */
-
-.flex-item {
-
+/* Brewery preview gallery */
+.brewery-preview {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
+div > div {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+
+div > img {
+    display: flex;
+    width: 100px;
+    height: 100px;
+}
+
+span {
+    margin: 10px 10px;
+    align-content: center;
+}
