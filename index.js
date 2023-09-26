@@ -15,7 +15,7 @@ function fetcher(url) {
 
 //get state brewery data from databaseand
 function stateBreweries(state) {
-    fetcher(`https://api.openbrewerydb.org/v1/breweries?by_state=${state}&per_page=200`)
+    fetcher(`https://api.openbrewerydb.org/v1/breweries?by_state=${state}&by_type=micro&per_page=200`)
     .then(randomizer)
     
 }
@@ -26,7 +26,8 @@ function randomizer(stateBreweries) {
     let numberOfBreweries = stateBreweries.length;
     let breweryArray = [];
     for (let i=10; i>0; i--) {
-        breweryArray.push(stateBreweries[Math.floor(Math.random() * numberOfBreweries)])
+        oneBrewery = stateBreweries.splice([Math.floor(Math.random() * numberOfBreweries)], 1)
+        breweryArray.push(...oneBrewery)
     }
     console.log(breweryArray)
     renderBreweryGallery(breweryArray)
@@ -51,15 +52,6 @@ function renderBreweryGallery(breweryArray) {
         galleryDiv.append(div);
     })
 }
-
-
-// function logoSelector(website) {
-//     let urlSection = website.replace(`http://www.`, '')
-//     let icon = `https://icons.duckduckgo.com/ip3/${urlSection}.ico`
-//     return icon
-// }
-
-
 
 
 function breweryDetails(event) {
