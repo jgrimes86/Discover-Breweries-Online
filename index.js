@@ -4,7 +4,8 @@
 const breweryAPI = 'https://api.openbrewerydb.org/v1/breweries/random?size=10'
 const galleryDiv = document.getElementById('brewery-preview');
 const breweryDetail = document.getElementById('brewery-detail');
-const stateSelectionForm = document.getElementById('state-form')
+const stateSelectionForm = document.getElementById('state-form');
+const mapTile = document.getElementById('map');
 
 //all-purpose fetch function
 function fetcher(url) {
@@ -27,6 +28,7 @@ function randomizer(stateBreweries) {
     for (let i=10; i>0; i--) {
         breweryArray.push(stateBreweries[Math.floor(Math.random() * numberOfBreweries)])
     }
+    console.log(breweryArray)
     renderBreweryGallery(breweryArray)
 }
 
@@ -80,11 +82,21 @@ function breweryDetails(event) {
         let website = document.createElement('div');
         website.innerText = brewery.website_url;
 
-        let saveButton = document.createElement('button')
+        let saveButton = document.createElement('button');
         saveButton.innerText = 'Save Brewery';
-        saveButton.addEventListener('click', saveToDatabase)
+        saveButton.addEventListener('click', saveToDatabase);
 
-        breweryDetail.append(name, address, website, saveButton)
+        breweryDetail.append(name, address, website, saveButton);
+
+        let lat = brewery.latitude;
+        let lng = brewery.longitude;
+        layerGroup.clearLayers();
+        if (lat != null && lng != null) {
+            L.marker([lat, lng]).addTo(layerGroup)
+            map.setView([lat, lng])
+        } else {
+            map.src = 'brewKettle.jpeg'
+        }
 
     })
 
@@ -102,4 +114,15 @@ function saveToDatabase() {
     stateBreweries(state)
     e.target.reset()
 })
+
+
+// embedded map:
+let map = L.map('map').setView([39.952, -75.163], 13);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+let layerGroup = L.layerGroup().addTo(map);
 

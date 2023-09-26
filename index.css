@@ -77,3 +77,5 @@ div > img {
 #brewery-detail {
     text-align: left;
 }
+
+#map { height: 300px; }
