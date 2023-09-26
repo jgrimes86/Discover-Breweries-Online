@@ -2,9 +2,10 @@
 // const breweryAPI = `https://api.openbrewerydb.org/v1/breweries?page=${randomPageNum}&per_page=10`
 
 const breweryAPI = 'https://api.openbrewerydb.org/v1/breweries/random?size=10'
+const breweryAPIRoot = 'https://api.openbrewerydb.org/v1/breweries'
 const galleryDiv = document.getElementById('brewery-preview')
 const breweryDetail = document.getElementById('brewery-detail');
-const stateSelector = document.getElementsByClassName('dropdown')
+const stateSelectionForm = document.querySelector('#state-submit')
 
 // Function to fetch the brewery data from api
 function fetchResource(url) {
@@ -33,13 +34,11 @@ function renderBreweryGallery(brewery) {
     galleryDiv.append(div);
 }
 
-
 function logoSelector(website) {
     let urlSection = website.replace(`http://www.`, '')
     let icon = `https://icons.duckduckgo.com/ip3/${urlSection}.ico`
     return icon
 }
-
 
 
 
@@ -72,3 +71,18 @@ function breweryDetails(event) {
     })
 
 }
+// Function to search breweries by state form submission and render gallery with results
+stateSelectionForm.addEventListener('submit', e => {
+    e.preventDefault()
+    // const state = e.target.state.value
+    const state = e.target['state'].value
+    console.log(state)
+    
+    fetch(breweryAPIRoot + `?by_state=${state}&size=10`)
+        .then(resp => resp.json())
+        .then(stateBreweryData => {
+            stateBreweryData.forEach(renderBreweryGallery)
+        })
+
+    e.target.reset()
+})
