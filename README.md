@@ -1,6 +1,4 @@
-# Discover The MET Online
-
-*The Metropolatian Museum of Art* has a extensive collection of artwork on display. This application will allow potential MET visitors to view some of the MET's works, find out details about the piece, search for styles of art based on the MET's departments, and save liked artwork. This application uses the MET's open **API** *https://collectionapi.metmuseum.org/public/collection/v1/objects*
+# Discover Breweries Online
 
 This is a code project for Flatiron School's software engineering course. The authors of this project are [Jim Grimes](https://www.github.com/jgrimes86), and [Kevin J Stafford](https://www.github.com/kevinjstafford)
 

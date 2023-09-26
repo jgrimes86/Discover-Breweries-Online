@@ -4,7 +4,7 @@
 const breweryAPI = 'https://api.openbrewerydb.org/v1/breweries/random?size=10'
 const galleryDiv = document.getElementById('brewery-preview');
 const breweryDetail = document.getElementById('brewery-detail');
-const stateSelector = document.getElementsByClassName('dropdown')
+const stateSelectionForm = document.getElementById('state-form')
 
 //all-purpose fetch function
 function fetcher(url) {
@@ -16,6 +16,7 @@ function fetcher(url) {
 function stateBreweries(state) {
     fetcher(`https://api.openbrewerydb.org/v1/breweries?by_state=${state}&per_page=200`)
     .then(randomizer)
+    
 }
 stateBreweries('New_Jersey')
 
@@ -26,7 +27,6 @@ function randomizer(stateBreweries) {
     for (let i=10; i>0; i--) {
         breweryArray.push(stateBreweries[Math.floor(Math.random() * numberOfBreweries)])
     }
-    console.log(breweryArray)
     renderBreweryGallery(breweryArray)
 }
 
@@ -67,6 +67,7 @@ function breweryDetails(event) {
         breweryDetail.innerHTML = '';
         
         let name = document.createElement('h3');
+        name.dataset.brewId = brewery.id
         name.innerText = brewery.name;
         
         let address = document.createElement('div');
@@ -94,17 +95,11 @@ function saveToDatabase() {
 }
 
 // Function to search breweries by state form submission and render gallery with results
-// stateSelectionForm.addEventListener('submit', e => {
-//     e.preventDefault()
-//     // const state = e.target.state.value
-//     const state = e.target['state'].value
-//     console.log(state)
-//     breweryDetail.innerHTML = ''
-    
-//     fetch(breweryAPIRoot + `?by_state=${state}&size=10`)
-//         .then(resp => resp.json())
-//         .then(stateBreweryData => {
-//             stateBreweryData.forEach(renderBreweryGallery)
-//         })
+    stateSelectionForm.addEventListener('submit', e => {
+    e.preventDefault()
+    const state = e.target.state.value
 
-//     e.target.reset()
+    stateBreweries(state)
+    e.target.reset()
+})
+
