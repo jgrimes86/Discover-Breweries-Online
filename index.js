@@ -2,7 +2,7 @@
 // const breweryAPI = `https://api.openbrewerydb.org/v1/breweries?page=${randomPageNum}&per_page=10`
 
 const breweryAPI = 'https://api.openbrewerydb.org/v1/breweries/random?size=10'
-const galleryDiv = document.getElementById('brewery-preview')
+const galleryDiv = document.getElementById('brewery-preview');
 const breweryDetail = document.getElementById('brewery-detail');
 
 // Function to fetch the brewery data from api
@@ -28,6 +28,7 @@ function renderBreweryGallery(brewery) {
     
     const span = document.createElement('span');
     span.innerText = brewery.name;
+    span.classList = "brewery-name";
     div.append(img, span);
     galleryDiv.append(div);
 }
