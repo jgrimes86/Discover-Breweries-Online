@@ -4,9 +4,9 @@
 const breweryAPI = 'https://api.openbrewerydb.org/v1/breweries/random?size=10'
 const galleryDiv = document.getElementById('brewery-preview');
 const breweryDetail = document.getElementById('brewery-detail');
-const stateSelectionForm = document.getElementById('state-form')
 const likedBreweries = document.getElementById('saved-breweries')
-
+const stateSelectionForm = document.getElementById('state-form');
+const mapTile = document.getElementById('map');
 
 //all-purpose fetch function
 function fetcher(url) {
@@ -16,7 +16,7 @@ function fetcher(url) {
 
 //get state brewery data from databaseand
 function stateBreweries(state) {
-    fetcher(`https://api.openbrewerydb.org/v1/breweries?by_state=${state}&per_page=200`)
+    fetcher(`https://api.openbrewerydb.org/v1/breweries?by_state=${state}&by_type=micro&per_page=200`)
     .then(randomizer)
     
 }
@@ -27,8 +27,10 @@ function randomizer(stateBreweries) {
     let numberOfBreweries = stateBreweries.length;
     let breweryArray = [];
     for (let i=10; i>0; i--) {
-        breweryArray.push(stateBreweries[Math.floor(Math.random() * numberOfBreweries)])
+        oneBrewery = stateBreweries.splice([Math.floor(Math.random() * numberOfBreweries)], 1)
+        breweryArray.push(...oneBrewery)
     }
+    console.log(breweryArray)
     renderBreweryGallery(breweryArray)
 }
 
@@ -53,15 +55,6 @@ function renderBreweryGallery(breweryArray) {
 }
 
 
-// function logoSelector(website) {
-//     let urlSection = website.replace(`http://www.`, '')
-//     let icon = `https://icons.duckduckgo.com/ip3/${urlSection}.ico`
-//     return icon
-// }
-
-
-
-
 function breweryDetails(event) {
     let brewId = event.target.parentElement.dataset.brewId
     fetcher('https://api.openbrewerydb.org/v1/breweries/'+brewId)
@@ -82,11 +75,21 @@ function breweryDetails(event) {
         let website = document.createElement('div');
         website.innerText = brewery.website_url;
 
-        let saveButton = document.createElement('button')
+        let saveButton = document.createElement('button');
         saveButton.innerText = 'Save Brewery';
-        saveButton.addEventListener('click', saveToDatabase)
+        saveButton.addEventListener('click', saveToDatabase);
 
-        breweryDetail.append(name, address, website, saveButton)
+        breweryDetail.append(name, address, website, saveButton);
+
+        let lat = brewery.latitude;
+        let lng = brewery.longitude;
+        layerGroup.clearLayers();
+        if (lat != null && lng != null) {
+            L.marker([lat, lng]).addTo(layerGroup)
+            map.setView([lat, lng])
+        } else {
+            map.src = 'brewKettle.jpeg'
+        }
 
     })
 
@@ -111,4 +114,15 @@ function saveToDatabase(event) {
     stateBreweries(state)
     e.target.reset()
 })
+
+
+// embedded map:
+let map = L.map('map').setView([39.952, -75.163], 13);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+let layerGroup = L.layerGroup().addTo(map);
 

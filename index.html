@@ -4,13 +4,17 @@
     <meta charset="utf-8"/>
     <title>Discover Breweries Online</title>
     <link rel="stylesheet" href="index.css">
+    <!-- CSS file for embedded Leaflet map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- JavaScript file for embedded Leaflet map -->
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script defer type="text/javascript" src="index.js"></script>
 </head>
 <body>
     <div class="header" id="jumbo-tron">
       <h1 id="main-header">Discover Breweries Online</h1>
     </div>
-       <form action="" method="get" class="state-selector" id="state-form">
+        <form action="" method="get" class="state-selector" id="state-form">
         <div class="state-selector">
             <label for="state"></label>
             <input type="text" name="state" id="state" placeholder="enter a state" required />
@@ -18,7 +22,7 @@
         <div class="state-selector">
             <input type="submit" value="Search" />
         </div>
-       </form>
+        </form>
  
     <div id="brewery-preview" class="flex-container">
 
@@ -33,8 +37,10 @@
         </span>
         <span class="detail-box">
             <h3 id="click-instruction">Click on a brewery to view detials.</h3>
-            <div id="brewery-image"></div>
-            <div id="brewery-detail"></div>
+            <div id="detail-map">
+                <div id="brewery-detail"></div>
+                <div id="map"></div>
+            </div>
         </span>
     </div>
 </body>

@@ -78,6 +78,15 @@ div > img {
     margin-top: 0px;
 }
 
+#detail-map {
+    display: inline-flex
+}
+
 #brewery-detail {
     text-align: left;
+}
+
+#map {
+    height: 300px;
+    width: 300px;
 }
