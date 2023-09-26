@@ -62,8 +62,7 @@ function renderBreweryGallery(breweryArray) {
 
 function breweryDetails(event) {
     let brewId = event.target.parentElement.dataset.brewId
-    fetch('https://api.openbrewerydb.org/v1/breweries/'+brewId)
-    .then(resp => resp.json())
+    fetcher('https://api.openbrewerydb.org/v1/breweries/'+brewId)
     .then(brewery => {
         breweryDetail.innerHTML = '';
         
@@ -96,7 +95,6 @@ function saveToDatabase() {
 }
 
 // Function to search breweries by state form submission and render gallery with results
-// function stateSelected() {
     stateSelectionForm.addEventListener('submit', e => {
     e.preventDefault()
     const state = e.target.state.value
@@ -104,3 +102,4 @@ function saveToDatabase() {
     stateBreweries(state)
     e.target.reset()
 })
+
