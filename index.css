@@ -15,10 +15,13 @@
     font-size: 4rem;
 }
 
+/* primary website sections */
 .flex-container {
     display: flex;
     align-items: flex-start;
+    position: relative;
 }
+
 
 /* State Selection Form */
 form.state-selector {
@@ -41,7 +44,7 @@ label, input {
     align-items: center;
 }
 
-.flex-container > div {
+#brewery-preview > div {
     display: grid;
     align-content: center;
     justify-content: center;
@@ -74,16 +77,18 @@ div > img {
     border-color: black;
 }
 
-/* list of liked breweries and brewery details */
-#liked-brewery {
+/* list of liked breweries, brewery details, and map */
+.details {
     width: 30%;
     display: inline-block;
 }
 
-.detail-box {
-    display: inline-block;
-    width: 70%;
+/* list of saved breweries */
+#liked-breweries {
+    position: absolute;
+    left: 10px;
 }
+
 #saved-breweries > li {
     text-decoration: underline;
     margin-top: 0px;
@@ -98,8 +103,11 @@ div > img {
     list-style-type: none;
 }
 
+/* map */
 #detail-map {
-    display: inline-flex
+    /* display: inline-flex */
+    position: absolute;
+    right: 10px;
 }
 
 #brewery-detail {
