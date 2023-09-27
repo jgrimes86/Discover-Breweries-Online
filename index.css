@@ -50,6 +50,7 @@ label, input {
 
 div > img {
     display: flex;
+    margin: 10px 10px;
     width: 100px;
     height: 100px;
     align-content: center;
@@ -61,6 +62,16 @@ div > img {
     display: flex;
     align-content: center;
     flex-wrap: wrap;
+}
+
+/* CSS for hover event */
+.gallery-card > div {
+    padding: 5px;
+}
+
+.hovering {
+    border: 2px solid;
+    border-color: black;
 }
 
 /* list of liked breweries and brewery details */
