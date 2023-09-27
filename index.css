@@ -75,22 +75,24 @@ div > img {
 }
 
 /* list of liked breweries and brewery details */
-.saved-box {
+#liked-brewery {
     width: 30%;
-    display: flex;
+    display: inline-block;
 }
 
 .detail-box {
-    display: block;
+    display: inline-block;
     width: 70%;
 }
-#saved-breweries > h4 {
+#saved-breweries > li {
     text-decoration: underline;
     margin-top: 0px;
+    text-align: left;
+    margin-right: 0px;
 }
 
 #saved-breweries {
-    display: flex;
+    display: inline-block;
     flex-direction: column;
     text-align: left;
     list-style-type: none;
@@ -102,6 +104,7 @@ div > img {
 
 #brewery-detail {
     text-align: left;
+    margin-right: 1em;
 }
 
 #map {
