@@ -1,11 +1,19 @@
+* {
+    background-color: antiquewhite;
+}
 /* Main Site Header */
+#header {
+    background-color: black;
+}
+
 #main-header {
     display: block;
     height: 250px;
     width: auto;
     background-color: black;
     background-position: center;
-    background-repeat: no-repeat;
+    margin-top: 0px;
+    padding-top: 0px;
 }
 
 #main-header {
@@ -14,7 +22,7 @@
     color: antiquewhite;
     font-size: 4rem;
 }
-
+/* Micro brewery gallery elements */
 .flex-container {
     display: flex;
     align-items: flex-start;
@@ -48,21 +56,18 @@ label, input {
     gap: 5px;
 }
 
-div > img {
-    display: flex;
-    margin: 10px 10px;
-    width: 100px;
-    height: 100px;
-    align-content: center;
-    flex-wrap: wrap;
-}
-
 .brewery-name {
     margin: 10px 10px;
     display: flex;
     align-content: center;
     flex-wrap: wrap;
 }
+.gallery-card {
+    display: inline-block;
+    width: 10% !important;
+    padding-bottom: 1em;
+}
+
 
 /* CSS for hover event */
 .gallery-card > div {
