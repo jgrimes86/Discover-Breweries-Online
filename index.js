@@ -3,7 +3,7 @@
 
 const breweryAPI = 'https://api.openbrewerydb.org/v1/breweries/random?size=10'
 const galleryDiv = document.getElementById('brewery-preview');
-const breweryDetail = document.getElementById('brewery-detail');
+const breweryDetailCard = document.getElementById('brewery-detail');
 const stateSelectionForm = document.getElementById('state-form');
 const mapTile = document.getElementById('map');
 const likedBreweries = document.getElementById('saved-breweries')
@@ -40,7 +40,7 @@ function renderBreweryGallery(breweryArray) {
     breweryArray.map(brewery => {
         const div = document.createElement('div');
         div.dataset.brewId = brewery.id;
-        div.addEventListener('click', breweryDetails);
+        div.addEventListener('click', breweryGalleryClick);
         div.classList = 'gallery-card';
         div.addEventListener('mouseenter', hoverOn);
         div.addEventListener('mouseleave', hoverOff);
@@ -58,54 +58,111 @@ function renderBreweryGallery(breweryArray) {
 }
 
 
-function breweryDetails(event) {
+function breweryGalleryClick(event) {
     let brewId = event.target.parentElement.dataset.brewId
     fetcher('https://api.openbrewerydb.org/v1/breweries/'+brewId)
-    .then(brewery => {
-        breweryDetail.innerHTML = '';
-        
-        let name = document.createElement('h3');
-        name.dataset.brewId = brewery.id
-        name.innerText = brewery.name;
-        
-        let address = document.createElement('div');
-        if (brewery.address_2 == null && brewery.address_3 == null) {
-            address.innerText = `${brewery.address_1}, ${brewery.city}, ${brewery.state_province} ${brewery.postal_code}`
-        } else if (brewery.address_3 == null) {
-            address.innerText = `${brewery.address_1}, ${brewery.address_2}, ${brewery.city}, ${brewery.state_province} ${brewery.postal_code}`
-        } else {address.innerText = `${brewery.address_1} + ${brewery.address_2} + ${brewery.address_3}, ${brewery.city}, ${brewery.state_province} ${brewery.postal_code}`}
-        
-        let website = document.createElement('div');
-        website.innerText = brewery.website_url;
+    .then(breweryDetail)
+}
+    
+function breweryDetail(brewery) {
+    breweryDetailCard.innerHTML = '';
+    
+    let name = document.createElement('h3');
+    name.dataset.brewId = brewery.id
+    name.innerText = brewery.name;
+    
+    let address = document.createElement('div');
+    if (brewery.address_2 == null && brewery.address_3 == null) {
+        address.innerText = `${brewery.address_1}, ${brewery.city}, ${brewery.state_province} ${brewery.postal_code}`
+    } else if (brewery.address_3 == null) {
+        address.innerText = `${brewery.address_1}, ${brewery.address_2}, ${brewery.city}, ${brewery.state_province} ${brewery.postal_code}`
+    } else {address.innerText = `${brewery.address_1} + ${brewery.address_2} + ${brewery.address_3}, ${brewery.city}, ${brewery.state_province} ${brewery.postal_code}`}
+    
+    let website = document.createElement('div');
+    website.innerText = brewery.website_url;
 
-        let saveButton = document.createElement('button');
-        saveButton.innerText = 'Save Brewery';
-        saveButton.addEventListener('click', saveToDatabase);
+    let saveButton = document.createElement('button');
+    saveButton.innerText = 'Save Brewery';
+    saveButton.addEventListener('click', saveToDatabase);
 
-        breweryDetail.append(name, address, website, saveButton);
+    breweryDetailCard.append(name, address, website, saveButton);
 
-        let lat = brewery.latitude;
-        let lng = brewery.longitude;
-        layerGroup.clearLayers();
-        if (lat != null && lng != null) {
-            L.marker([lat, lng]).addTo(layerGroup)
-            map.setView([lat, lng])
-        } else {
-            map.src = 'brewKettle.jpeg'
-        }
-
-    })
-
+    let lat = brewery.latitude;
+    let lng = brewery.longitude;
+    layerGroup.clearLayers();
+    if (lat != null && lng != null) {
+        L.marker([lat, lng]).addTo(layerGroup)
+        map.setView([lat, lng])
+    } else {
+        map.src = 'brewKettle.jpeg'
+    }
 }
 
+//get liked breweries from local database
+function fetchLikedBreweries() {
+    fetcher('http://localhost:3000/breweries')
+    .then(listLikedBreweries)
+}
+fetchLikedBreweries();
 
+//display liked breweries list on page load
+function listLikedBreweries(breweries) {
+    breweries.forEach(item => {
+        let savedBrewery = document.createElement('li');
+        savedBrewery.innerText = item.name;
+        savedBrewery.dataset.brewId = item.breweryId;
+        savedBrewery.addEventListener('click', showSavedBrewery)
+        likedBreweries.append(savedBrewery);
+    })
+}
+
+function showSavedBrewery(event) {
+    let breweryId = event.target.dataset.brewId;
+    fetcher('https://api.openbrewerydb.org/v1/breweries/'+breweryId)
+    .then(breweryDetail)
+}
+
+//save liked brewery to database if not already on database
 function saveToDatabase(event) {
-    let savedBrewery = document.createElement('li')
-    likedBreweries.append(savedBrewery)
-    
     let brewID = event.target.parentElement.firstChild.dataset.brewId
     let breweryName = event.target.parentElement.firstChild.innerText
-    savedBrewery.innerText = breweryName
+
+    fetcher('http://localhost:3000/breweries')
+    .then(savedBreweryChecker)
+    
+    function savedBreweryChecker(breweries) {
+        let alreadySaved = breweries.find(item => {
+            if(item.name == breweryName) {return true}
+        })
+        if (alreadySaved == undefined) {
+            databaseUpdate()
+        } else if (alreadySaved.name == breweryName) {
+            console.log('brewery already saved to database')
+        }
+    }
+    
+    function databaseUpdate() {
+        fetch('http://localhost:3000/breweries', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            breweryId: brewID,
+            name: breweryName,
+        })
+        })
+        .then(response => response.json())
+        .then(listUpdate)
+    }
+            
+    function listUpdate(newdata){
+        let savedBrewery = document.createElement('li');
+        savedBrewery.innerText = newdata.name;
+        savedBrewery.dataset.brewId = brewID;
+        savedBrewery.addEventListener('click', showSavedBrewery)
+        likedBreweries.append(savedBrewery);
+    }
 }
 
 // Function to search breweries by state form submission and render gallery with results
