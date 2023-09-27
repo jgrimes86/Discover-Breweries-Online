@@ -8,6 +8,7 @@ const stateSelectionForm = document.getElementById('state-form');
 const mapTile = document.getElementById('map');
 const likedBreweries = document.getElementById('saved-breweries')
 
+
 //all-purpose fetch function
 function fetcher(url) {
     return fetch(url)
