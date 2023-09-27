@@ -4,6 +4,7 @@
 const breweryAPI = 'https://api.openbrewerydb.org/v1/breweries/random?size=10'
 const galleryDiv = document.getElementById('brewery-preview');
 const breweryDetail = document.getElementById('brewery-detail');
+const likedBreweries = document.getElementById('saved-breweries')
 const stateSelectionForm = document.getElementById('state-form');
 const mapTile = document.getElementById('map');
 const likedBreweries = document.getElementById('saved-breweries')
@@ -94,6 +95,7 @@ function breweryDetails(event) {
     })
 
 }
+
 
 function saveToDatabase(event) {
     let savedBrewery = document.createElement('li')

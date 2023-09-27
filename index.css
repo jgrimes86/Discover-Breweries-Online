@@ -63,7 +63,7 @@ div > img {
     flex-wrap: wrap;
 }
 
-/*list of liked breweries and brewery details */
+/* list of liked breweries and brewery details */
 #liked-brewery {
     width: 30%;
     display: flex;
@@ -72,6 +72,10 @@ div > img {
 .detail-box {
     display: block;
     width: 70%;
+}
+#saved-breweries > h4 {
+    text-decoration: underline;
+    margin-top: 0px;
 }
 
 #saved-breweries {
