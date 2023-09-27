@@ -3,8 +3,9 @@ const galleryDiv = document.getElementById('brewery-preview');
 const breweryDetailCard = document.getElementById('brewery-detail');
 const stateSelectionForm = document.getElementById('state-form');
 const mapTile = document.getElementById('map');
-const likedBreweries = document.getElementById('saved-breweries')
-const newResultsButton = document.createElement('button')
+const likedBreweries = document.getElementById('saved-breweries');
+const newResultsButton = document.createElement('button');
+const noMapImage = document.getElementById('default-image');
 
 //all-purpose fetch function
 function fetcher(url) {
@@ -91,8 +92,12 @@ function breweryDetail(brewery) {
     if (lat != null && lng != null) {
         L.marker([lat, lng]).addTo(layerGroup)
         map.setView([lat, lng])
+        noMapImage.classList.add('hidden');
+        noMapImage.classList.remove('shown');
     } else {
-        map.src = 'brewKettle.jpeg'
+        noMapImage.src = 'brewKettle.jpeg'
+        noMapImage.classList.add('shown');
+        noMapImage.classList.remove('hidden');
     }
 }
 

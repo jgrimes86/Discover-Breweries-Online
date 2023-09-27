@@ -107,7 +107,7 @@ div > img {
 #detail-map {
     /* display: inline-flex */
     position: absolute;
-    right: 10px;
+    right: 0px;
 }
 
 #brewery-detail {
@@ -118,4 +118,21 @@ div > img {
 #map {
     height: 300px;
     width: 300px;
+    z-index: 1;
+}
+
+#default-image{
+    position:absolute;
+    top: -10px;
+    left: -10px;
+    height: 300px;
+    width: 300px;
+}
+
+.shown {
+    z-index: 2;
+}
+
+.hidden {
+    z-index: 0;
 }
