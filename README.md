@@ -1,5 +1,7 @@
 # Discover Breweries Online
 
+This application allows the user to discover micro craft breweries across the United States of America. Use the search feature to pick at state and populate a list of 10 randomly selected breweries from that state. The user can click on the gallery image of the brewery to open the brewery with more details, including the website address, physical address, and a map of the brewery's location. The user can also click a button to save the breweries they like to a list for later.
+
 This is a code project for Flatiron School's software engineering course. The authors of this project are [Jim Grimes](https://www.github.com/jgrimes86), and [Kevin J Stafford](https://www.github.com/kevinjstafford)
 
 
