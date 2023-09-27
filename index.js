@@ -109,11 +109,18 @@ fetchLikedBreweries();
 //display liked breweries list on page load
 function listLikedBreweries(breweries) {
     breweries.forEach(item => {
-        let savedBrewery = document.createElement('li');
-        savedBrewery.innerText = item.name;
-        savedBrewery.dataset.brewId = item.breweryId;
-        savedBrewery.addEventListener('click', showSavedBrewery)
-        likedBreweries.append(savedBrewery);
+        let likedBrewery = document.createElement('li');
+        likedBrewery.innerText = item.name;
+        likedBrewery.dataset.brewId = item.breweryId;
+        likedBrewery.id = item.id;
+        likedBrewery.addEventListener('click', showSavedBrewery);
+
+        let deleteBtn = document.createElement('button');
+        deleteBtn.innerText = 'x';
+        deleteBtn.addEventListener('click', deleteLikedBrewery);
+        likedBrewery.append(deleteBtn);
+
+        likedBreweries.append(likedBrewery);
     })
 }
 
@@ -149,21 +156,27 @@ function saveToDatabase(event) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            breweryId: brewID,
+            brewery_id: brewID,
             name: breweryName,
         })
         })
         .then(response => response.json())
-        .then(listUpdate)
+        .then(newData => listLikedBreweries([newData]))
     }
-            
-    function listUpdate(newdata){
-        let savedBrewery = document.createElement('li');
-        savedBrewery.innerText = newdata.name;
-        savedBrewery.dataset.brewId = brewID;
-        savedBrewery.addEventListener('click', showSavedBrewery)
-        likedBreweries.append(savedBrewery);
-    }
+}
+
+//function to delete a liked brewery from the database and liked brewery list
+function deleteLikedBrewery(event) {
+    event.stopPropagation();
+
+    let breweryLine = event.target.parentElement;
+    let breweryId = breweryLine.id
+
+    fetch(`http://localhost:3000/breweries/${breweryId}`, {
+        method: 'DELETE'
+    })
+
+    breweryLine.remove();
 }
 
 // Function to search breweries by state form submission and render gallery with results
