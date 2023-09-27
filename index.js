@@ -4,7 +4,6 @@
 const breweryAPI = 'https://api.openbrewerydb.org/v1/breweries/random?size=10'
 const galleryDiv = document.getElementById('brewery-preview');
 const breweryDetail = document.getElementById('brewery-detail');
-const likedBreweries = document.getElementById('saved-breweries')
 const stateSelectionForm = document.getElementById('state-form');
 const mapTile = document.getElementById('map');
 
@@ -42,10 +41,13 @@ function renderBreweryGallery(breweryArray) {
         const div = document.createElement('div');
         div.dataset.brewId = brewery.id;
         div.addEventListener('click', breweryDetails);
+        div.classList = 'gallery-card';
+        div.addEventListener('mouseenter', hoverOn);
+        div.addEventListener('mouseleave', hoverOff);
 
         const website = brewery.website_url;
         const img = document.createElement('img');
-        img.src = 'images/icons8-hops-80.png';
+        img.src = 'images/icons8-hops-green.png';
         
         const span = document.createElement('span');
         span.innerText = brewery.name;
@@ -126,3 +128,16 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 let layerGroup = L.layerGroup().addTo(map);
 
+
+// event functions for mouseenter and mouseleave
+function hoverOn(event) {
+    event.target.classList = 'hovering';
+    let icon = event.target.firstChild;
+    icon.src = './images/icons8-hops-black80.png';
+}
+
+function hoverOff(event) {
+    event.target.classList.remove('hovering');
+    let icon = event.target.firstChild;
+    icon.src = './images/icons8-hops-green.png';
+}
