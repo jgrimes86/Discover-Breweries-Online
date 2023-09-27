@@ -1,5 +1,5 @@
-* {
-    background-color: antiquewhite;
+body {
+    background-color: rgb(251, 247, 242);
 }
 /* Main Site Header */
 #header {
@@ -22,11 +22,17 @@
     color: antiquewhite;
     font-size: 4rem;
 }
+#details-header {
+    text-align: center;
+}
+/* primary website sections */
 /* Micro brewery gallery elements */
 .flex-container {
     display: flex;
     align-items: flex-start;
+    position: relative;
 }
+
 
 /* State Selection Form */
 form.state-selector {
@@ -49,7 +55,7 @@ label, input {
     align-items: center;
 }
 
-.flex-container > div {
+#brewery-preview > div {
     display: grid;
     align-content: center;
     justify-content: center;
@@ -64,7 +70,7 @@ label, input {
 }
 .gallery-card {
     display: inline-block;
-    width: 10% !important;
+    width: 10%;
     padding-bottom: 1em;
 }
 
@@ -79,16 +85,18 @@ label, input {
     border-color: black;
 }
 
-/* list of liked breweries and brewery details */
-#liked-brewery {
+/* list of liked breweries, brewery details, and map */
+.details {
     width: 30%;
     display: inline-block;
 }
 
-.detail-box {
-    display: inline-block;
-    width: 70%;
+/* list of saved breweries */
+#liked-breweries {
+    position: absolute;
+    left: 10px;
 }
+
 #saved-breweries > li {
     text-decoration: underline;
     margin-top: 0px;
@@ -103,8 +111,12 @@ label, input {
     list-style-type: none;
 }
 
+/* map */
 #detail-map {
-    display: inline-flex
+    /* display: inline-flex */
+    /* position: absolute; */
+    right: 10px;
+    justify-content: center;
 }
 
 #brewery-detail {
@@ -114,5 +126,5 @@ label, input {
 
 #map {
     height: 300px;
-    width: 300px;
+    width: 500px;
 }
