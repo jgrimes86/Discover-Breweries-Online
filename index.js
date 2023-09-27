@@ -6,6 +6,7 @@ const galleryDiv = document.getElementById('brewery-preview');
 const breweryDetail = document.getElementById('brewery-detail');
 const stateSelectionForm = document.getElementById('state-form');
 const mapTile = document.getElementById('map');
+const likedBreweries = document.getElementById('saved-breweries')
 
 //all-purpose fetch function
 function fetcher(url) {
@@ -94,8 +95,13 @@ function breweryDetails(event) {
 
 }
 
-function saveToDatabase() {
-    console.log('this will save the brewery to the list')
+function saveToDatabase(event) {
+    let savedBrewery = document.createElement('li')
+    likedBreweries.append(savedBrewery)
+    
+    let brewID = event.target.parentElement.firstChild.dataset.brewId
+    let breweryName = event.target.parentElement.firstChild.innerText
+    savedBrewery.innerText = breweryName
 }
 
 // Function to search breweries by state form submission and render gallery with results

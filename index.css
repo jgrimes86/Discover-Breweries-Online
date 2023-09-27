@@ -74,6 +74,13 @@ div > img {
     width: 70%;
 }
 
+#saved-breweries {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    list-style-type: none;
+}
+
 #detail-map {
     display: inline-flex
 }
