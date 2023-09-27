@@ -1,13 +1,10 @@
-// const randomPageNum = Math.floor(Math.random() * 10)
-// const breweryAPI = `https://api.openbrewerydb.org/v1/breweries?page=${randomPageNum}&per_page=10`
-
 const breweryAPI = 'https://api.openbrewerydb.org/v1/breweries/random?size=10'
 const galleryDiv = document.getElementById('brewery-preview');
 const breweryDetailCard = document.getElementById('brewery-detail');
 const stateSelectionForm = document.getElementById('state-form');
 const mapTile = document.getElementById('map');
 const likedBreweries = document.getElementById('saved-breweries')
-
+const newResultsButton = document.createElement('button')
 
 //all-purpose fetch function
 function fetcher(url) {
@@ -167,12 +164,18 @@ function saveToDatabase(event) {
 }
 
 // Function to search breweries by state form submission and render gallery with results
+newResultsButton.innerText = 'Get More Breweries'
+stateSelectionForm.appendChild(newResultsButton)
+newResultsButton.disabled = true
+newResultsButton.style.display = 'none'
     stateSelectionForm.addEventListener('submit', e => {
     e.preventDefault()
     const state = e.target.state.value
 
     stateBreweries(state)
-    e.target.reset()
+    newResultsButton.style.display = 'inline-flex'
+    newResultsButton.disabled = false
+    
 })
 
 
