@@ -64,7 +64,7 @@ div > img {
 }
 
 /* list of liked breweries and brewery details */
-#liked-brewery {
+.saved-box {
     width: 30%;
     display: flex;
 }
