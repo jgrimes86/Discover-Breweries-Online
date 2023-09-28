@@ -26,7 +26,6 @@ body {
     text-align: center;
 }
 /* primary website sections */
-/* Micro brewery gallery elements */
 .flex-container {
     display: flex;
     align-items: flex-start;
@@ -83,6 +82,11 @@ label, input {
 .hovering {
     border: 2px solid;
     border-color: black;
+}
+
+/*  */
+.section3 {
+    min-height: 350px;
 }
 
 /* list of liked breweries, brewery details, and map */
@@ -149,3 +153,19 @@ label, input {
 .hidden {
     z-index: 0;
 }
+
+/* footer */
+.footer {
+    left: 0px;
+    bottom: 0px;
+    height: 130px;
+    width: 100%;
+}
+
+.citation {
+    text-align: center;
+    padding: 3px;
+    background-color: rgb(251, 247, 242);
+    color: rgba(66, 63, 63, 0.651);
+    font-size: 0.875em;
+  }
