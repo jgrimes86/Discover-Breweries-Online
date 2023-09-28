@@ -13,27 +13,31 @@ body {
     background-color: black;
     background-position: center;
     margin-top: 0px;
-    padding-top: 0px;
-}
-
-#main-header {
+    font-family: 'Spectral', sans-serif;
     text-align: center;
     padding-top: 125px;
     color: antiquewhite;
     font-size: 4rem;
 }
+
 #details-header {
     text-align: center;
+    font-family: 'Noto Sans', sans-serif;
 }
 /* primary website sections */
 .flex-container {
     display: flex;
     align-items: flex-start;
     position: relative;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 
 /* State Selection Form */
+.search-form {
+    font-family: 'Noto Sans', sans-serif;
+}
+
 form.state-selector {
     display: table;
     padding-bottom: 18px;
@@ -172,4 +176,5 @@ label, input {
     background-color: rgb(251, 247, 242);
     color: rgba(66, 63, 63, 0.651);
     font-size: 0.875em;
+    font-family: 'Noto Sans', sans-serif;
   }
