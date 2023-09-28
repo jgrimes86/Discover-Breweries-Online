@@ -6,6 +6,7 @@ const mapTile = document.getElementById('map');
 const likedBreweries = document.getElementById('saved-breweries');
 const newResultsButton = document.createElement('button');
 const noMapImage = document.getElementById('default-image');
+const breweryDetailsSection = document.getElementById('click-instruction')
 
 //all-purpose fetch function
 function fetcher(url) {
@@ -56,6 +57,7 @@ function renderBreweryGallery(breweryArray) {
     })
 }
 
+breweryDetailsSection.style.display = 'none'
 
 function breweryGalleryClick(event) {
     let brewId = event.target.parentElement.dataset.brewId
@@ -99,6 +101,7 @@ function breweryDetail(brewery) {
         noMapImage.classList.add('shown');
         noMapImage.classList.remove('hidden');
     }
+    breweryDetailsSection.style.display = 'inline-block'
 }
 
 //get liked breweries from local database

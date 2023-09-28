@@ -91,14 +91,20 @@ label, input {
     display: inline-block;
 }
 
+#click-instruction {
+    margin-bottom: 0px;
+}
+
 /* list of saved breweries */
 #liked-breweries {
     position: absolute;
     left: 10px;
 }
+#saved-section {
+    margin-bottom: 0px;
+}
 
 #saved-breweries > li {
-    text-decoration: underline;
     margin-top: 0px;
     text-align: left;
     margin-right: 0px;
