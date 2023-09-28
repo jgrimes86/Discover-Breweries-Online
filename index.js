@@ -25,9 +25,21 @@ stateBreweries('New_Jersey')
 function randomizer(stateBreweries) {
     let numberOfBreweries = stateBreweries.length;
     let breweryArray = [];
-    for (let i=10; i>0; i--) {
-        oneBrewery = stateBreweries.splice([Math.floor(Math.random() * numberOfBreweries)], 1)
-        breweryArray.push(...oneBrewery)
+    if (numberOfBreweries > 20) {
+        let i=10;
+        while (i>0) {
+            oneBrewery = stateBreweries.splice([Math.floor(Math.random() * numberOfBreweries)], 1)
+            console.log(oneBrewery)
+            breweryArray.push(...oneBrewery)
+            if (oneBrewery.length == 0) {
+                i
+            } else {i--}
+        }
+    } else {
+        for (let i=10; i>0; i--) {
+            oneBrewery = stateBreweries.splice([Math.floor(Math.random() * numberOfBreweries)], 1)
+            breweryArray.push(...oneBrewery)
+        }
     }
     renderBreweryGallery(breweryArray)
 }
