@@ -59,12 +59,13 @@ label, input {
     align-content: center;
     justify-content: center;
     gap: 5px;
+    width: 10%;
 }
 
 .brewery-name {
     margin: 10px 10px;
     display: flex;
-    align-content: center;
+    align-content: left;
     flex-wrap: wrap;
 }
 .gallery-card {
@@ -76,12 +77,15 @@ label, input {
 
 /* CSS for hover event */
 .gallery-card > div {
+    display: inline-block;
     padding: 5px;
+    width: 10%;
 }
 
 .hovering {
     border: 2px solid;
     border-color: black;
+    width: 10%;
 }
 
 /*  */
