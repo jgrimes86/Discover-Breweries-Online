@@ -2,22 +2,18 @@ body {
     background-color: rgb(251, 247, 242);
 }
 /* Main Site Header */
-#header {
-    background-color: black;
-}
-
 #main-header {
     display: block;
     height: 250px;
-    width: auto;
-    background-color: black;
+    width: 100%;
+    /* background-color: black;
     background-position: center;
     margin-top: 0px;
     font-family: 'Spectral', sans-serif;
     text-align: center;
     padding-top: 125px;
     color: antiquewhite;
-    font-size: 4rem;
+    font-size: 4rem; */
 }
 
 #details-header {
@@ -36,6 +32,8 @@ body {
 /* State Selection Form */
 .search-form {
     font-family: 'Noto Sans', sans-serif;
+    padding-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 form.state-selector {
@@ -47,6 +45,10 @@ label, input {
     display: table-cell;
     margin-bottom: 5px;
 }
+ #randomizer {
+    padding: 2px;
+    margin: 2px;
+ }
 
 /* Brewery preview gallery */
 .brewery-preview {
