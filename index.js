@@ -29,7 +29,6 @@ function randomizer(stateBreweries) {
         let i=10;
         while (i>0) {
             oneBrewery = stateBreweries.splice([Math.floor(Math.random() * numberOfBreweries)], 1)
-            console.log(oneBrewery)
             breweryArray.push(...oneBrewery)
             if (oneBrewery.length == 0) {
                 i
@@ -231,11 +230,9 @@ function changeNoMapImage(searchedState) {
     let sanitizedState = searchedState.toLowerCase();
     fetcher('http://localhost:3000/images')
     .then(images => {
-        // console.log(images)
         let selectedState = images.find(item => {
             if (item.state == sanitizedState) {return true}
         })
-        // console.log(selectedState);
         let newImage = selectedState.image;
         noMapImage.src = newImage;
         noMapImage.setAttribute('alt', `Image representing ${searchedState}`);
