@@ -203,17 +203,18 @@ function changeNoMapImage(searchedState) {
     let sanitizedState = searchedState.toLowerCase();
     fetcher('http://localhost:3000/images')
     .then(images => {
-        console.log(images)
+        // console.log(images)
         let selectedState = images.find(item => {
             if (item.state == sanitizedState) {return true}
         })
-        console.log(selectedState);
+        // console.log(selectedState);
         let newImage = selectedState.image;
         noMapImage.src = newImage;
+        noMapImage.setAttribute('alt', `Image representing ${searchedState}`);
     })
 }
 
-// embedded map:
+// embedded map, code from https://leafletjs.com/examples/quick-start/:
 let map = L.map('map').setView([39.952, -75.163], 13);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
