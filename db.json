@@ -1,3 +1,255 @@
 {
-  "breweries": []
+  "breweries": [],
+  "images": [
+    {
+      "id": 1,
+      "state": "alabama",
+      "image": "state-images/alabama.jpg"
+    },
+    {
+      "id": 2,
+      "state": "alaska",
+      "image": "state-images/alaska.jpg"
+    },
+    {
+      "id": 3,
+      "state": "arizona",
+      "image": "state-images/arizona.jpg"
+    },
+    {
+      "id": 4,
+      "state": "arkansas",
+      "image": "state-images/alabama.jpg"
+    },
+    {
+      "id": 5,
+      "state": "california",
+      "image": "state-images/california.jpg"
+    },
+    {
+      "id": 6,
+      "state": "colorado",
+      "image": "state-images/colorado.png"
+    },
+    {
+      "id": 7,
+      "state": "connecticut",
+      "image": "state-images/connecticut.png"
+    },
+    {
+      "id": 8,
+      "state": "delaware",
+      "image": "state-images/delaware.jpg"
+    },
+    {
+      "id": 9,
+      "state": "florida",
+      "image": "state-images/florida.jpg"
+    },
+    {
+      "id": 10,
+      "state": "georgia",
+      "image": "state-images/georgia.jpg"
+    },
+    {
+      "id": 11,
+      "state": "hawaii",
+      "image": "state-images/hawaii.jpg"
+    },
+    {
+      "id": 12,
+      "state": "idaho",
+      "image": "state-images/idaho.jpg"
+    },
+    {
+      "id": 13,
+      "state": "illinois",
+      "image": "state-images/illinois.jpg"
+    },
+    {
+      "id": 14,
+      "state": "indiana",
+      "image": "state-images/indiana.jpg"
+    },
+    {
+      "id": 15,
+      "state": "iowa",
+      "image": "state-images/iowa.png"
+    },
+    {
+      "id": 16,
+      "state": "kansas",
+      "image": "state-images/kansas.jpg"
+    },
+    {
+      "id": 17,
+      "state": "kentucky",
+      "image": "state-images/kentucky.jpg"
+    },
+    {
+      "id": 18,
+      "state": "louisiana",
+      "image": "state-images/louisiana.png"
+    },
+    {
+      "id": 19,
+      "state": "maine",
+      "image": "state-images/maine.jpg"
+    },
+    {
+      "id": 20,
+      "state": "maryland",
+      "image": "state-images/maryland.jpg"
+    },
+    {
+      "id": 21,
+      "state": "massachusetts",
+      "image": "state-images/massachusetts.jpg"
+    },
+    {
+      "id": 22,
+      "state": "michigan",
+      "image": "state-images/michigan.jpg"
+    },
+    {
+      "id": 23,
+      "state": "minnesota",
+      "image": "state-images/minnesota.jpg"
+    },
+    {
+      "id": 24,
+      "state": "mississippi",
+      "image": "state-images/mississippi.png"
+    },
+    {
+      "id": 25,
+      "state": "missouri",
+      "image": "state-images/missouri.jpg"
+    },
+    {
+      "id": 26,
+      "state": "montana",
+      "image": "state-images/montana.jpg"
+    },
+    {
+      "id": 27,
+      "state": "nebraska",
+      "image": "state-images/nebraska.jpg"
+    },
+    {
+      "id": 28,
+      "state": "nevada",
+      "image": "state-images/nevada.jpg"
+    },
+    {
+      "id": 29,
+      "state": "new hampshire",
+      "image": "state-images/new-hampshire.jpg"
+    },
+    {
+      "id": 30,
+      "state": "new jersey",
+      "image": "state-images/new-jersey.jpg"
+    },
+    {
+      "id": 31,
+      "state": "new mexico",
+      "image": "state-images/new-mexico.jpg"
+    },
+    {
+      "id": 32,
+      "state": "new york",
+      "image": "state-images/new-york.png"
+    },
+    {
+      "id": 33,
+      "state": "north carolina",
+      "image": "state-images/north-carolina.jpg"
+    },
+    {
+      "id": 34,
+      "state": "north dakota",
+      "image": "state-images/north-dakota.jpg"
+    },
+    {
+      "id": 35,
+      "state": "ohio",
+      "image": "state-images/ohio.jpg"
+    },
+    {
+      "id": 36,
+      "state": "oklahoma",
+      "image": "state-images/oklahoma.jpg"
+    },
+    {
+      "id": 37,
+      "state": "oregon",
+      "image": "state-images/oregon.jpg"
+    },
+    {
+      "id": 38,
+      "state": "pennsylvania",
+      "image": "state-images/pennsylvania.jpg"
+    },
+    {
+      "id": 39,
+      "state": "rhode island",
+      "image": "state-images/rhode-island.jpg"
+    },
+    {
+      "id": 40,
+      "state": "south carolina",
+      "image": "state-images/south-carolina.jpg"
+    },
+    {
+      "id": 41,
+      "state": "south dakota",
+      "image": "state-images/south-dakota.jpg"
+    },
+    {
+      "id": 42,
+      "state": "tennessee",
+      "image": "state-images/tennessee.jpg"
+    },
+    {
+      "id": 43,
+      "state": "texas",
+      "image": "state-images/texas.png"
+    },
+    {
+      "id": 44,
+      "state": "utah",
+      "image": "state-images/utah.png"
+    },
+    {
+      "id": 45,
+      "state": "vermont",
+      "image": "state-images/vermont.jpg"
+    },
+    {
+      "id": 46,
+      "state": "virginia",
+      "image": "state-images/virginia.jpg"
+    },
+    {
+      "id": 47,
+      "state": "washington",
+      "image": "state-images/washington.jpg"
+    },
+    {
+      "id": 48,
+      "state": "west virginia",
+      "image": "state-images/west-virginia.jpg"
+    },
+    {
+      "id": 49,
+      "state": "wisconsin",
+      "image": "state-images/wisconsin.gif"
+    },
+    {
+      "id": 50,
+      "state": "wyoming",
+      "image": "state-images/wyoming.jpg"
+    }
+  ]
 }

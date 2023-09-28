@@ -29,7 +29,7 @@ function randomizer(stateBreweries) {
         oneBrewery = stateBreweries.splice([Math.floor(Math.random() * numberOfBreweries)], 1)
         breweryArray.push(...oneBrewery)
     }
-    console.log(breweryArray)
+    // console.log(breweryArray)
     renderBreweryGallery(breweryArray)
 }
 
@@ -95,7 +95,7 @@ function breweryDetail(brewery) {
         noMapImage.classList.add('hidden');
         noMapImage.classList.remove('shown');
     } else {
-        noMapImage.src = 'brewKettle.jpeg'
+        // noMapImage.src = 'brewKettle.jpeg'
         noMapImage.classList.add('shown');
         noMapImage.classList.remove('hidden');
     }
@@ -194,8 +194,24 @@ newResultsButton.style.display = 'none'
     newResultsButton.style.display = 'inline-flex'
     newResultsButton.disabled = false
     
+    //changing default image to cover map
+    changeNoMapImage(state);
 })
 
+//function to switch image shown over map when brewery data has no lat/long
+function changeNoMapImage(searchedState) {
+    let sanitizedState = searchedState.toLowerCase();
+    fetcher('http://localhost:3000/images')
+    .then(images => {
+        console.log(images)
+        let selectedState = images.find(item => {
+            if (item.state == sanitizedState) {return true}
+        })
+        console.log(selectedState);
+        let newImage = selectedState.image;
+        noMapImage.src = newImage;
+    })
+}
 
 // embedded map:
 let map = L.map('map').setView([39.952, -75.163], 13);
