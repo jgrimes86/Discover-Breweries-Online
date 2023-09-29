@@ -1,10 +1,14 @@
 # Discover Breweries Online
 
-This application allows the user to discover micro craft breweries across the United States of America. Use the search feature to pick at state and populate a list of 10 randomly selected breweries from that state. The user can click on the gallery image of the brewery to open the brewery with more details, including the website address, physical address, and a map of the brewery's location. The user can also click a button to save the breweries they like to a list for later.
+This application allows the user to discover micro craft breweries across the United States of America via a randomly curated list of 10 micro breweries from New Jersey (default). Use the search feature to pick at state and populate a list of 10 randomly selected breweries from that state. The user can click on the gallery image of the brewery to open the brewery with more details, including the website address, physical address, and a map of the brewery's location. The user can also click a button to save the breweries they like to a list for later. 
 
 This is a code project for Flatiron School's software engineering course. The authors of this project are [Jim Grimes](https://www.github.com/jgrimes86), and [Kevin J Stafford](https://www.github.com/kevinjstafford)
 
-
+## Key Features
+- **Random Brewery Generator** On page load, a gallery of 10 randomly selected breweries in the state of New Jersey are displayed. 
+- **State Search** Allows the user to enter a state in the United State of America and updates the brewery gallery with 10 randomly selected microbreweries from that state.
+- **Get More Results** Allows the user to search the same state again to generate 10 new randomly selected microbreweries
+- **Save Brewery** Allows the user to save a specificed microbrewery to a list. This adds a brewery to a local database. The list of breweries persist on refresh so the user can recall the breweries to view again. *Requires json-server running locally*
 ## Project Requirements
 
 Your app must be a HTML/CSS/JS frontend that accesses data from a public API or from a db.json file using json-server. Your API or db.json should return a collection of at least 5 objects with each object having at least 3 attributes. All interactions between the client and the API should be handled asynchronously and use JSON as the communication format. Try to avoid using an API that requires a key. APIs that are free and require no authorization will be easiest to use. For ideas, see this list of no-auth APIsLinks to an external site.. If you would like to use an API that requires a key, please consult with your instructor on how to protect that key. NEVER push your API key to github!
